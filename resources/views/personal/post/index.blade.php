@@ -56,14 +56,18 @@
                         @endauth
                         <!--Posts display section-->
                             <div class="col-md-8 pb-3">
-                                <div class="form-group">
-                                    <a class="button alert-light btn-group-toggle align-right" href="/personal/StayHomeTopic">
-                                        <i class="icon fa-user-circle"> </i> My Post
-                                    </a>
-                                    <a class="button alert-light btn-group-toggle align-right" href="/StayHomeTopic">
-                                        <i class="icon fa-pencil-square-o"> </i> All Post
-                                    </a>
-                                </div>
+                                @auth
+                                    <div class="form-group">
+                                        <a class="button alert-light btn-group-toggle align-right"
+                                           href="/personal/StayHomeTopic">
+                                            <i class="icon fa-user-circle"> </i> My Post
+                                        </a>
+                                        <a class="button alert-light btn-group-toggle align-right"
+                                           href="/StayHomeTopic">
+                                            <i class="icon fa-pencil-square-o"> </i> All Post
+                                        </a>
+                                    </div>
+                                @endauth
                                 <div class="card-footer" style="border:2px; border-style:solid; border-color:#e6e6e6;">
                                     <h4 class="text-center"> POST ({{ $posts->count() }})</h4>
                                 </div>

@@ -28,7 +28,7 @@
                         </i> Tag: @foreach($article->tags as $tag) <a
                             href="/Articles?tag={{$tag->name}}">{{ $tag->name }}</a>   @endforeach
                     </header>
-                    @if(auth()->user()== $article->user)
+                    @if(auth()->user() == $article->user)
                         <div class="boxed-btn">
                             <footer><i class="icon fa-edit"> </i><a class="btn-link" href="/Articles/{{$article->id}}/edit">Edit article</a></footer>
                             <form action="/Articles/{{$article->id}}/delete" method="POST" id="myForm">
@@ -37,6 +37,7 @@
                                 <div><button class="btn-link" type="submit"><i class="icon fa-trash-o"> </i>Delete article</button></div>
                             </form>
                         </div>
+                        @auth
                         @elseif(auth()->user()->user_type == 'admin')
                         <div class="boxed-btn">
                             <form action="/Articles/{{$article->id}}/delete" method="POST" id="myForm">
@@ -47,6 +48,8 @@
                         </div>
                         @else
                     @endif
+                        @endauth
+
                 </div>
                 <div class="card-body">
                     <h1 class="text-center" style="font-weight: bolder;font-size: 45px">{{ $article->title}}</h1>
