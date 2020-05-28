@@ -33,6 +33,12 @@
                         </div>
                     </form>
                 </div>
+                <select name="select-tag" onchange="location = this.value;">
+                    <option value="">-- Select-Tag --</option>
+                    @foreach($tags as $tag)
+                        <option value="/personal/Articles?tag={{$tag->name}}">{{$tag->name}}</option>
+                    @endforeach
+                </select>
                 @auth
                     <div class="form-group">
                         <a class="button alert-secondary btn-group-toggle" href="/personal/Articles/create">

@@ -21,36 +21,21 @@ class PostController extends Controller
 
     /**
      * create the form for creating a new post.
-     *
      */
     public function create()
     {
         Request()->validate([
             'postarea' => 'required',
         ]);
-//        if (request()->has('image_post')) {
-//            $imageUploaded = request()->file('image_post');
-//            $imageName = time() . '.' . $imageUploaded->getClientOriginalExtension();
-//            $imagePatch = public_path('/images/');
-//            $imageUploaded->move($imagePatch, $imageName);
-//            Post::create([
-//                'body' => request()->postarea,
-//                'image_post' => request()->image_post = $imageName,
-//                'user_id' => auth()->user()->id
-//            ]);
-//        } else {
             Post::create([
                 'body' => request()->postarea,
                 'user_id' => auth()->user()->id
             ]);
-//        }
-
         return redirect('/StayHomeTopic');
     }
 
     /**
      * delete the form for creating a new post.
-     *
      */
     public function delete(Post $post)
     {
@@ -76,18 +61,8 @@ class PostController extends Controller
         Request()->validate([
             'postarea' => 'required',
         ]);
-        if (request()->has('image_post')) {
-            $imageUploaded = request()->file('image_post');
-            $imageName = time() . '.' . $imageUploaded->getClientOriginalExtension();
-            $imagePatch = public_path('/images/');
-            $imageUploaded->move($imagePatch, $imageName);
-            $post->body = request()->postarea;
-            $post->image_post = $imageName;
-            $post->save();
-        } else {
             $post->body = request()->postarea;
             $post->save();
-        }
         return redirect('/StayHomeTopic/');
     }
 
@@ -115,9 +90,8 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Store the like of post
      *
-
      */
     public function store(Post $post)
     {
@@ -127,7 +101,7 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the like of post
      *
      * @param \App\Post $post
      * @return \Illuminate\Http\Response

@@ -10,6 +10,7 @@ class PersonalArticleController extends Controller
 {
     public function index(Request $request)
     {
+        $tags = Tag::all();
         $search_title = $request->get('title',null);
         if(request('tag')){
             $Article = Tag::where('name',request('tag'))->firstOrFail()->articles()->where('user_id','=', auth()->user()->id)->paginate(10);
@@ -20,7 +21,7 @@ class PersonalArticleController extends Controller
         else{
             $Article = Article::where('user_id','=', auth()->user()->id)->latest()->paginate(10);
         }
-        return view('personal.article.index',compact('Article','search_title'));
+        return view('personal.article.index',compact('Article','search_title','tags'));
     }
 //    public function index()
 //    {
