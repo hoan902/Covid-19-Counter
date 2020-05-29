@@ -40,6 +40,9 @@
                     <option value="/Articles?tag={{$tag->name}}">{{$tag->name}}</option>
                         @endforeach
                 </select>
+                <a class="button alert-light btn-group-toggle align-right" href="/Articles">
+                    <i class="icon fa-pencil-square-o"> </i> All Articles
+                </a>
                 @auth
                     <div class="form-group">
                         <a class="button alert-secondary btn-group-toggle" href="/personal/Articles/create">
@@ -67,7 +70,7 @@
                             <a href="/Articles/{{$articles->id}}"><h2>{{ $articles->title }}</h2></a>
                         </header>
                         <p>Excerpt: {{ $articles->excerpt }}</p>
-                        <em class="text-right inline"><i class="icon fa-user-circle"> </i> Author: {{$articles->user->name}}</em>
+                        <em class="text-right inline"><i class="icon fa-user-circle"> </i> Author: <a href="/Articles?user={{$articles->user->username}}">{{$articles->user->name}}</a></em>
                         <br>
                         <em><i class="icon fa-clock-o"> </i> created at: {{$articles->created_at->toDateString()}}</em>
                         <br>

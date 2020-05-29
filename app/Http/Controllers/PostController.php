@@ -13,9 +13,11 @@ class PostController extends Controller
      */
     public function index()
     {
+        if(request('user')){
+        $posts = User::where('username',request('user'))->firstOrFail()->posts()->withLikes()->latest()->paginate(15);
+        }else{
         $posts = Post::withLikes()->latest()->paginate(15);
-
-
+        }
         return view('Post.view', compact('posts'));
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Tag;
+use App\User;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -14,7 +15,10 @@ class ArticleController extends Controller
         $search_title = $request->get('title',null);
         if(request('tag')){
             $Article = Tag::where('name',request('tag'))->firstOrFail()->articles()->paginate(10);
-        }elseif($search_title)
+        }elseif(request('user')){
+            $Article = User::where('username',request('user'))->firstOrFail()->articles()->paginate(10);
+        }
+        elseif($search_title)
         {
             $Article = Article::where('title', 'LIKE', '%'.$search_title.'%')->paginate(10);
         }

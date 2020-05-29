@@ -88,7 +88,7 @@
                                                     </div>
                                                     <div class="ml-2">
                                                         <div class="h5 m-0">
-                                                            @ {{ $post->user->name }}
+                                                            <a href="/StayHomeTopic?user={{$post->user->username}}">@ {{ $post->user->name }}</a>
                                                         </div>
                                                         <div class="h7 text-muted">{{ $post->user->email }}</div>
                                                     </div>
