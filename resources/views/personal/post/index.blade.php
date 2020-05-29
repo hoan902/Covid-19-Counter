@@ -62,10 +62,6 @@
                                            href="/personal/StayHomeTopic">
                                             <i class="icon fa-user-circle"> </i> My Post
                                         </a>
-                                        <a class="button alert-light btn-group-toggle align-right"
-                                           href="/StayHomeTopic">
-                                            <i class="icon fa-pencil-square-o"> </i> All Post
-                                        </a>
                                     </div>
                                 @endauth
                                     <a class="button alert-light btn-group-toggle align-right"
@@ -186,6 +182,9 @@
                                         </div>
                                     </div>
                                 @endforeach
+                                    <div class="col-12 d-flex justify-content-center pt-4">
+                                        {{ $posts->links() }}
+                                    </div>
                             </div>
 
                         </div>

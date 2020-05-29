@@ -52,9 +52,6 @@
                         <a class="button alert-light btn-group-toggle align-right" href="/personal/Articles">
                             <i class="icon fa-user-circle"> </i> My Articles
                         </a>
-                        <a class="button alert-light btn-group-toggle align-right" href="/Articles">
-                            <i class="icon fa-pencil-square-o"> </i> All Articles
-                        </a>
                     </div>
                 @endauth
             </div>
