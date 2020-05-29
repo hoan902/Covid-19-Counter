@@ -30,25 +30,33 @@
                     </header>
                     @if(auth()->user() == $article->user)
                         <div class="boxed-btn">
-                            <footer><i class="icon fa-edit"> </i><a class="btn-link" href="/Articles/{{$article->id}}/edit">Edit article</a></footer>
+                            <footer><i class="icon fa-edit"> </i><a class="btn-link"
+                                                                    href="/Articles/{{$article->id}}/edit">Edit
+                                    article</a></footer>
                             <form action="/Articles/{{$article->id}}/delete" method="POST" id="myForm">
                                 @csrf
                                 @method('DELETE')
-                                <div><button class="btn-link" type="submit"><i class="icon fa-trash-o"> </i>Delete article</button></div>
+                                <div>
+                                    <button class="btn-link" type="submit"><i class="icon fa-trash-o"> </i>Delete
+                                        article
+                                    </button>
+                                </div>
                             </form>
                         </div>
-                        @auth
-                        @elseif(auth()->user()->user_type == 'admin')
+                    @elseif(auth()->user()->user_type == 'admin')
                         <div class="boxed-btn">
                             <form action="/Articles/{{$article->id}}/delete" method="POST" id="myForm">
                                 @csrf
                                 @method('DELETE')
-                                <div><button class="btn-link" type="submit"><i class="icon fa-trash-o"> </i>Delete article</button></div>
+                                <div>
+                                    <button class="btn-link" type="submit"><i class="icon fa-trash-o"> </i>Delete
+                                        article
+                                    </button>
+                                </div>
                             </form>
                         </div>
-                        @else
+                    @else
                     @endif
-                        @endauth
 
                 </div>
                 <div class="card-body">
@@ -92,7 +100,8 @@
                                         <div class="card-body">
                                             <p class="comment-text">{!!  $comment->body !!}</p>
                                             <div class="bottom-comment">
-                                                <div class="comment-date"> <i class="icon fa-clock-o"> </i>{{ $comment->created_at }}</div>
+                                                <div class="comment-date"><i
+                                                        class="icon fa-clock-o"> </i>{{ $comment->created_at }}</div>
                                                 @auth
                                                     @if(auth()->user() == $comment->user )
                                                         <form
@@ -101,7 +110,8 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class="complain">Delete</button>
-                                                            <a class="button" href="/Articles/{{$comment->article->id}}/comment/{{$comment->id}}/edit">Edit</a>
+                                                            <a class="button"
+                                                               href="/Articles/{{$comment->article->id}}/comment/{{$comment->id}}/edit">Edit</a>
                                                         </form>
                                                     @elseif(auth()->user()->user_type == 'admin')
                                                         <form
@@ -111,7 +121,7 @@
                                                             @method('DELETE')
                                                             <button class="complain">Delete</button>
                                                         </form>
-                                                        @else
+                                                    @else
                                                     @endif
                                                 @endauth
                                             </div>
@@ -126,7 +136,8 @@
                     </div>
                 </div>
                 @auth
-                    <form action="/Articles/{{$article->id}}/comment/submit" method="POST" enctype="multipart/form-data" class="card">
+                    <form action="/Articles/{{$article->id}}/comment/submit" method="POST" enctype="multipart/form-data"
+                          class="card">
                         @csrf
                         <div class="card-header form-inline">
                             <div class="mr-2">
@@ -141,11 +152,13 @@
                         </div>
                         <div class="card-body">
                             <textarea class="form-control" type="text" placeholder="Comment here"
-                                   name="body" id="BodyEditor">
+                                      name="body" id="BodyEditor">
                             </textarea>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="button primary mt-2" style="float:right" onclick="myFunction()">Submit</button>
+                            <button type="submit" class="button primary mt-2" style="float:right"
+                                    onclick="myFunction()">Submit
+                            </button>
                         </div>
                     </form>
                 @endauth
