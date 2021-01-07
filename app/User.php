@@ -52,12 +52,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(LikeComment::class);
     }
-    public function articles()
-    {
-        return $this->hasMany(Article::class);
-    }
-    public function article_comments()
-    {
-        return $this->hasMany(ArticleComment::class);
-    }
 }

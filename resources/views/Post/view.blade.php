@@ -60,18 +60,14 @@
 
                         <!--Posts display section-->
                             <div class="col-md-8 pb-3">
-                                @auth
-                                    <div class="form-group">
-                                        <a class="button alert-light btn-group-toggle align-right"
-                                           href="/personal/StayHomeTopic">
-                                            <i class="icon fa-user-circle"> </i> My Post
-                                        </a>
-                                    </div>
-                                @endauth
-                                    <a class="button alert-light btn-group-toggle align-right"
-                                       href="/StayHomeTopic">
+                                <div class="form-group">
+                                    <a class="button alert-light btn-group-toggle align-right" href="/personal/StayHomeTopic">
+                                        <i class="icon fa-user-circle"> </i> My Post
+                                    </a>
+                                    <a class="button alert-light btn-group-toggle align-right" href="/StayHomeTopic">
                                         <i class="icon fa-pencil-square-o"> </i> All Post
                                     </a>
+                                </div>
                                 <div class="card-footer" style="border:2px; border-style:solid; border-color:#e6e6e6;">
                                     <h4 class="text-center"> POST ({{ $posts->count() }})</h4>
                                 </div>
@@ -88,7 +84,7 @@
                                                     </div>
                                                     <div class="ml-2">
                                                         <div class="h5 m-0">
-                                                            <a href="/StayHomeTopic?user={{$post->user->username}}">@ {{ $post->user->name }}</a>
+                                                            @ {{ $post->user->name }}
                                                         </div>
                                                         <div class="h7 text-muted">{{ $post->user->email }}</div>
                                                     </div>
@@ -115,7 +111,7 @@
 
                                                                 </div>
                                                             </div>
-                                                        @elseif(auth()->user()->user_type == 'admin')
+                                                            @elseif(auth()->user()->user_type == 'admin')
                                                             <div class="dropdown">
                                                                 <button class="btn btn-link dropdown-toggle"
                                                                         type="button" id="gedf-drop1"
@@ -179,18 +175,15 @@
 
                                         <div class="card-footer">
                                             <div class="">
-                                                <h4 class="comment-count">COMMENT ({{ $post->comments()->count() }}
-                                                    )</h4>
+                                                <h4 class="comment-count">COMMENT ({{ $post->comments()->count() }})</h4>
                                                 <comment class="comment-count" @auth:currentuser="{{auth()->user()}}"
                                                          @endauth:post="{{$post}}"></comment>
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
-                                    <div class="col-12 d-flex justify-content-center pt-4">
-                                        {{ $posts->links() }}
-                                    </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -200,7 +193,7 @@
             </div>
         </div>
     </section>
-    {{--        <script src="http://unpkg.com/turbolinks"></script>--}}
+{{--        <script src="http://unpkg.com/turbolinks"></script>--}}
 
 
 @endsection

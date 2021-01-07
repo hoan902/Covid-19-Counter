@@ -33,16 +33,6 @@
                         </div>
                     </form>
                 </div>
-                <label for="select-tag">Tags filter:</label>
-                <select name="select-tag" onchange="location = this.value;">
-                    <option value="">-- Select-Tag --</option>
-                    @foreach($tags as $tag)
-                    <option value="/Articles?tag={{$tag->name}}">{{$tag->name}}</option>
-                        @endforeach
-                </select>
-                <a class="button alert-light btn-group-toggle align-right" href="/Articles">
-                    <i class="icon fa-pencil-square-o"> </i> All Articles
-                </a>
                 @auth
                     <div class="form-group">
                         <a class="button alert-secondary btn-group-toggle" href="/personal/Articles/create">
@@ -56,6 +46,9 @@
                         <a class="button alert-light btn-group-toggle align-right" href="/personal/Articles">
                             <i class="icon fa-user-circle"> </i> My Articles
                         </a>
+                        <a class="button alert-light btn-group-toggle align-right" href="/Articles">
+                            <i class="icon fa-pencil-square-o"> </i> All Articles
+                        </a>
                     </div>
 
                 @endauth
@@ -67,7 +60,7 @@
                             <a href="/Articles/{{$articles->id}}"><h2>{{ $articles->title }}</h2></a>
                         </header>
                         <p>Excerpt: {{ $articles->excerpt }}</p>
-                        <em class="text-right inline"><i class="icon fa-user-circle"> </i> Author: <a href="/Articles?user={{$articles->user->username}}">{{$articles->user->name}}</a></em>
+                        <em class="text-right inline"><i class="icon fa-user-circle"> </i> Author: {{$articles->user->name}}</em>
                         <br>
                         <em><i class="icon fa-clock-o"> </i> created at: {{$articles->created_at->toDateString()}}</em>
                         <br>

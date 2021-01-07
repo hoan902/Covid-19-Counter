@@ -4,28 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Tag;
-use App\User;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
     public function index(Request $request)
     {
-        $tags = Tag::all();
         $search_title = $request->get('title',null);
         if(request('tag')){
             $Article = Tag::where('name',request('tag'))->firstOrFail()->articles()->paginate(10);
-        }elseif(request('user')){
-            $Article = User::where('username',request('user'))->firstOrFail()->articles()->paginate(10);
-        }
-        elseif($search_title)
+        }elseif($search_title)
         {
             $Article = Article::where('title', 'LIKE', '%'.$search_title.'%')->paginate(10);
         }
         else{
             $Article = Article::latest()->paginate(10);
         }
-        return view('Article.index',compact('Article','search_title','tags'));
+        return view('Article.index',compact('Article','search_title'));
     }
 //    public function index()
 //    {

@@ -13,31 +13,44 @@ class PostController extends Controller
      */
     public function index()
     {
-        if(request('user')){
-        $posts = User::where('username',request('user'))->firstOrFail()->posts()->withLikes()->latest()->paginate(10);
-        }else{
-        $posts = Post::withLikes()->latest()->paginate(10);
-        }
+        $posts = Post::withLikes()->latest()->paginate(15);
+
+
         return view('Post.view', compact('posts'));
     }
 
     /**
      * create the form for creating a new post.
+     *
      */
     public function create()
     {
         Request()->validate([
             'postarea' => 'required',
         ]);
+//        if (request()->has('image_post')) {
+//            $imageUploaded = request()->file('image_post');
+//            $imageName = time() . '.' . $imageUploaded->getClientOriginalExtension();
+//            $imagePatch = public_path('/images/');
+//            $imageUploaded->move($imagePatch, $imageName);
+//            Post::create([
+//                'body' => request()->postarea,
+//                'image_post' => request()->image_post = $imageName,
+//                'user_id' => auth()->user()->id
+//            ]);
+//        } else {
             Post::create([
                 'body' => request()->postarea,
                 'user_id' => auth()->user()->id
             ]);
+//        }
+
         return redirect('/StayHomeTopic');
     }
 
     /**
      * delete the form for creating a new post.
+     *
      */
     public function delete(Post $post)
     {
@@ -63,8 +76,18 @@ class PostController extends Controller
         Request()->validate([
             'postarea' => 'required',
         ]);
+        if (request()->has('image_post')) {
+            $imageUploaded = request()->file('image_post');
+            $imageName = time() . '.' . $imageUploaded->getClientOriginalExtension();
+            $imagePatch = public_path('/images/');
+            $imageUploaded->move($imagePatch, $imageName);
+            $post->body = request()->postarea;
+            $post->image_post = $imageName;
+            $post->save();
+        } else {
             $post->body = request()->postarea;
             $post->save();
+        }
         return redirect('/StayHomeTopic/');
     }
 
@@ -92,8 +115,9 @@ class PostController extends Controller
     }
 
     /**
-     * Store the like of post
+     * Update the specified resource in storage.
      *
+
      */
     public function store(Post $post)
     {
@@ -103,7 +127,7 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the like of post
+     * Remove the specified resource from storage.
      *
      * @param \App\Post $post
      * @return \Illuminate\Http\Response

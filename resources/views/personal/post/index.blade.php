@@ -56,18 +56,14 @@
                         @endauth
                         <!--Posts display section-->
                             <div class="col-md-8 pb-3">
-                                @auth
-                                    <div class="form-group">
-                                        <a class="button alert-light btn-group-toggle align-right"
-                                           href="/personal/StayHomeTopic">
-                                            <i class="icon fa-user-circle"> </i> My Post
-                                        </a>
-                                    </div>
-                                @endauth
-                                    <a class="button alert-light btn-group-toggle align-right"
-                                       href="/StayHomeTopic">
+                                <div class="form-group">
+                                    <a class="button alert-light btn-group-toggle align-right" href="/personal/StayHomeTopic">
+                                        <i class="icon fa-user-circle"> </i> My Post
+                                    </a>
+                                    <a class="button alert-light btn-group-toggle align-right" href="/StayHomeTopic">
                                         <i class="icon fa-pencil-square-o"> </i> All Post
                                     </a>
+                                </div>
                                 <div class="card-footer" style="border:2px; border-style:solid; border-color:#e6e6e6;">
                                     <h4 class="text-center"> POST ({{ $posts->count() }})</h4>
                                 </div>
@@ -182,9 +178,6 @@
                                         </div>
                                     </div>
                                 @endforeach
-                                    <div class="col-12 d-flex justify-content-center pt-4">
-                                        {{ $posts->links() }}
-                                    </div>
                             </div>
 
                         </div>
